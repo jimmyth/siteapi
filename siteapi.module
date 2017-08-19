@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * @file
+ * 	Save API key for access the page response.
+ */
+ 
+	use Drupal\Core\Form\FormStateInterface;
+	use Symfony\Component\HttpFoundation\Request;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * A new form text field named "Site API Key" needs to be added to the "Site Information"
+ * form with the default value of “No API Key yet”.
+ */
+function siteapi_form_system_site_information_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // When this form is visited after the "Site API Key" is saved, the field should be populated
+  // with the correct value.
+  if ($form_id == 'system_site_information_settings') {
+		$config = \Drupal::config('siteapi.settings');
+		$form['apikey'] = [
+			'#type' => 'details',
+			'#title' => t('API Key'),
+			'#open' => TRUE,
+		];
+		$form['apikey']['siteapikey'] = array(
+			'#type' => 'textfield',
+			'#title' => t('Site API Key'),
+			'#default_value' => $config->get('siteapikey'),
+		);
+		// Change the text of the "Update Configuration" instead of "Save configuration" button.
+		$form['actions']['submit']['#value'] = t('Update Configuration');
+		$form['actions']['submit']['#submit'][] = '_site_apikey_form_submit';
+	}
+}
+
+/**
+ * Custom submit function to save Site API key.
+ */
+function _site_apikey_form_submit(array &$form, FormStateInterface $form_state, $form_id) {
+	$apiKey = $form_state->getValue('siteapikey');
+	if ('No API Key yet' != $apiKey) {
+    $config = \Drupal::service('config.factory')->getEditable('siteapi.settings');
+			$config->set('siteapikey', $apiKey)
+			->save();
+		drupal_set_message(t('Site API Key has been saved with the value %apiKey', ['%apiKey' => $apiKey]));
+	}
+}

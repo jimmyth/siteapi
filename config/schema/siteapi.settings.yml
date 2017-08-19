@@ -1,0 +1,7 @@
+siteapi.settings:
+  type: mapping
+  label: 'API Key setting'
+  mapping:
+    siteapikey:
+      type: string
+      label: 'Default API Key'
