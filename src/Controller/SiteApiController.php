@@ -17,7 +17,7 @@ class SiteApiController extends ControllerBase {
   /**
    * {@inheritdoc}
    * 
-	 * @param string $apiKey
+   * @param string $apiKey
    *   A string to use, for API key.
    * @param integer $nodeId
    *   A numeric to use, Node ID.
@@ -56,15 +56,18 @@ class SiteApiController extends ControllerBase {
           return new JsonResponse($data);
         }
         else {
-          $data = ['http_code' => '403', 'values' => ['Err_msg' => 'Access denied', 'Solution' => t('Accept only page type.')]];
+          $data = ['http_code' => '403', 'values' => ['Err_msg' => 'Access denied', 
+            'Solution' => t('Accept only page type.')]];
         }
       }
       else {
-        $data = ['http_code' => '403', 'values' => ['Err_msg' => 'Access denied', 'Solution' => t('Please Enter Valid Node Id')]];
+        $data = ['http_code' => '403', 'values' => ['Err_msg' => 'Access denied', 
+          'Solution' => t('Please Enter Valid Node Id')]];
       }
     }
     else {
-      $data = ['http_code' => '403', 'values' => ['Err_msg' => 'Access denied', 'Solution' => t('Please Enter Valid Site API KEY')]];
+      $data = ['http_code' => '403', 'values' => ['Err_msg' => 'Access denied',
+      'Solution' => t('Please Enter Valid Site API KEY')]];
     }
 
     // Return the JSON Response.
