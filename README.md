@@ -1,7 +1,7 @@
 # Site API KEY - Overview
 
 
-This is the Git repo of SiteAPI Key.
+This is the Git repo of SiteAPI Key and API that responds with a JSON representation of a given node with the content type 'page'.
 
 ## Features
 
@@ -31,3 +31,6 @@ Add New API Key
 ## Example URL
 
 http://localhost/page_json/[APIKEY]/[NodeID]
+
+### Spent Time
+  3.5 Hrs.
