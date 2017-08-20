@@ -33,11 +33,15 @@ Add New API Key
 http://localhost/page_json/[APIKEY]/[NodeID]
 
 ### Spent Time
-  First 5 tasks regarding form 'Site Information' - 1 hrs.
-  Json Response - 1 hrs
-  Virtual Host creation, Drupal 8 New Instaltion, Git repo Creation etc- 0.50 hrs
-  Total 2.50 Hrs.
+
+  Overall time for coding 2hrs.
 
 ### Referances
 
+  Form Alter - https://api.drupal.org/api/drupal/core!lib!Drupal!Core!Form!form.api.php/function/hook_form_alter/8.2.x 
+
+  Drupal variable - https://www.drupal.org/docs/8/converting-drupal-7-modules-to-drupal-8/step-4-convert-drupal-7-variables-to-drupal-8
+
   Json Response - https://symfony.com/doc/current/introduction/http_fundamentals.html
+  
+  
