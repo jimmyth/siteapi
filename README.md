@@ -33,4 +33,11 @@ Add New API Key
 http://localhost/page_json/[APIKEY]/[NodeID]
 
 ### Spent Time
-  3.5 Hrs.
+  First 5 tasks regarding form 'Site Information' - 1 hrs.
+  Json Response - 1 hrs
+  Virtual Host creation, Drupal 8 New Instaltion, Git repo Creation etc- 0.50 hrs
+  Total 2.50 Hrs.
+
+### Referances
+
+  Json Response - https://symfony.com/doc/current/introduction/http_fundamentals.html
