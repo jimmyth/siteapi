@@ -1,0 +1,7 @@
+siteapi.json_response:
+  path: 'page_json/{apiKey}/{nodeId}'
+  defaults:
+    _controller: 'Drupal\siteapi\Controller\SiteApiController::getJson'
+    _title: 'Site API Response!'
+  requirements:
+    _permission: 'access content'

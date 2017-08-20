@@ -31,7 +31,22 @@ function siteapi_form_system_site_information_settings_alter(&$form, \Drupal\Cor
 		);
 		// Change the text of the "Update Configuration" instead of "Save configuration" button.
 		$form['actions']['submit']['#value'] = t('Update Configuration');
+		$form['actions']['submit']['#validate'][] = '_site_apikey_form_validate';
 		$form['actions']['submit']['#submit'][] = '_site_apikey_form_submit';
+	}
+}
+
+/**
+ * Custom validate function to validate Site API key.
+ */
+function _site_apikey_form_validate(array &$form, FormStateInterface $form_state, $form_id) {
+	$apiKey = $form_state->getValue('siteapikey');
+	// Validate  API key.
+	if ('No API Key yet' != $apiKey && $apiKey != NULL) {
+		// Check if you are using special characters and spaces.
+		if ( !preg_match ("/^[a-zA-Z0-9]+$/", $apiKey)) {
+			$form_state->setErrorByName('siteapikey', t('Please Enter valid API key. Accept only Numeric and characters !!!'));
+		}
 	}
 }
 
@@ -40,7 +55,8 @@ function siteapi_form_system_site_information_settings_alter(&$form, \Drupal\Cor
  */
 function _site_apikey_form_submit(array &$form, FormStateInterface $form_state, $form_id) {
 	$apiKey = $form_state->getValue('siteapikey');
-	if ('No API Key yet' != $apiKey) {
+	// Save API key to variable siteapikey.
+	if ('No API Key yet' != $apiKey && $apiKey != NULL) {
     $config = \Drupal::service('config.factory')->getEditable('siteapi.settings');
 			$config->set('siteapikey', $apiKey)
 			->save();
